@@ -3,20 +3,23 @@ package com.iridium.iridiumskyblock;
 import com.iridium.iridiumskyblock.configs.Inventories;
 import com.iridium.iridiumskyblock.support.Vault;
 import de.tr7zw.changeme.nbtapi.NBTItem;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.NumberFormat;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -320,29 +323,30 @@ public class Utils {
         }
     }
 
-    public static boolean canBuy(Player p, double vault, int crystals) {
+    public static BuyResponce canBuy(Player p, double vault, int crystals) {
         User u = User.getUser(p);
         if (u.getIsland() != null) {
+            if (u.getIsland().getCrystals() < crystals) return BuyResponce.NOT_ENOUGH_CRYSTALS;
             if (Vault.econ != null) {
-                if (Vault.econ.getBalance(p) >= vault && u.getIsland().getCrystals() >= crystals) {
+                if (Vault.econ.getBalance(p) >= vault) {
                     Vault.econ.withdrawPlayer(p, vault);
                     u.getIsland().setCrystals(u.getIsland().getCrystals() - crystals);
-                    return true;
+                    return BuyResponce.SUCCESS;
                 }
             }
-            if (u.getIsland().money >= vault && u.getIsland().getCrystals() >= crystals) {
+            if (u.getIsland().money >= vault) {
                 u.getIsland().money -= vault;
                 u.getIsland().setCrystals(u.getIsland().getCrystals() - crystals);
-                return true;
+                return BuyResponce.SUCCESS;
             }
         }
         if (Vault.econ != null) {
             if (Vault.econ.getBalance(p) >= vault && crystals == 0) {
                 Vault.econ.withdrawPlayer(p, vault);
-                return true;
+                return BuyResponce.SUCCESS;
             }
         }
-        return false;
+        return crystals == 0 ? BuyResponce.NOT_ENOUGH_VAULT : BuyResponce.NOT_ENOUGH_CRYSTALS;
     }
 
     public static int getExpAtLevel(final int level) {
@@ -408,6 +412,32 @@ public class Utils {
         return 0;
     }
 
+
+    public static String getCurrentTimeStamp(Date date, String format) {
+        SimpleDateFormat sdfDate = new SimpleDateFormat(format);//dd/MM/yyyy
+        return sdfDate.format(date);
+    }
+
+    public static Date getLocalDateTime(String time, String format) {
+        SimpleDateFormat sdfDate = new SimpleDateFormat(format);//dd/MM/yyyy
+        try {
+            return sdfDate.parse(time);
+        } catch (ParseException e) {
+            return null;
+        }
+    }
+
+    public static boolean hasOpenSlot(Inventory inv) {
+        for (ItemStack item : inv.getContents()) {
+            if (item == null) {
+                return true;
+            } else if (item.getType() == Material.AIR) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static class Placeholder {
 
         private final String key;
@@ -422,6 +452,12 @@ public class Utils {
             if (line == null) return "";
             return line.replace(key, value);
         }
+    }
+
+    public static enum BuyResponce {
+        SUCCESS,
+        NOT_ENOUGH_CRYSTALS,
+        NOT_ENOUGH_VAULT
     }
 
     public static class NumberFormatter {
@@ -465,23 +501,23 @@ public class Utils {
 
             if (bigDecimal.compareTo(BigDecimal.ZERO) < 0) {
                 outputStringBuilder
-                    .append("-")
-                    .append(formatPrettyNumber(bigDecimal.negate()));
+                        .append("-")
+                        .append(formatPrettyNumber(bigDecimal.negate()));
             } else if (bigDecimal.compareTo(ONE_THOUSAND) < 0) {
                 outputStringBuilder
-                    .append(bigDecimal.stripTrailingZeros().toPlainString());
+                        .append(bigDecimal.stripTrailingZeros().toPlainString());
             } else if (bigDecimal.compareTo(ONE_MILLION) < 0) {
                 outputStringBuilder
-                    .append(bigDecimal.divide(ONE_THOUSAND, RoundingMode.HALF_DOWN).stripTrailingZeros().toPlainString())
-                    .append(IridiumSkyblock.getConfiguration().thousandAbbreviation);
+                        .append(bigDecimal.divide(ONE_THOUSAND, RoundingMode.HALF_DOWN).stripTrailingZeros().toPlainString())
+                        .append(IridiumSkyblock.getConfiguration().thousandAbbreviation);
             } else if (bigDecimal.compareTo(ONE_BILLION) < 0) {
                 outputStringBuilder
-                    .append(bigDecimal.divide(ONE_MILLION, RoundingMode.HALF_DOWN).stripTrailingZeros().toPlainString())
-                    .append(IridiumSkyblock.getConfiguration().millionAbbreviation);
+                        .append(bigDecimal.divide(ONE_MILLION, RoundingMode.HALF_DOWN).stripTrailingZeros().toPlainString())
+                        .append(IridiumSkyblock.getConfiguration().millionAbbreviation);
             } else {
                 outputStringBuilder
-                    .append(bigDecimal.divide(ONE_BILLION, RoundingMode.HALF_DOWN).stripTrailingZeros().toPlainString())
-                    .append(IridiumSkyblock.getConfiguration().billionAbbreviation);
+                        .append(bigDecimal.divide(ONE_BILLION, RoundingMode.HALF_DOWN).stripTrailingZeros().toPlainString())
+                        .append(IridiumSkyblock.getConfiguration().billionAbbreviation);
             }
 
             return outputStringBuilder.toString();

@@ -28,7 +28,7 @@ public class ExpelCommand extends Command {
             return;
         }
         Player p = (Player) sender;
-        Island island =User.getUser(p).getIsland();
+        Island island = User.getUser(p).getIsland();
         Player visitor = Bukkit.getPlayer(args[1]);
         if (island != null) {
             if (visitor != null) {

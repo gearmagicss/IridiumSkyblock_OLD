@@ -43,6 +43,7 @@ public class Commands {
     public SetNameCommand setNameCommand = new SetNameCommand();
     public BankCommand bankCommand = new BankCommand();
     public ChatCommand chatCommand = new ChatCommand();
+    public ChatSpyCommand chatSpyCommand = new ChatSpyCommand();
     public ShopCommand shopCommand = new ShopCommand();
     public BiomeCommand biomeCommand = new BiomeCommand();
     public HelpCommand helpCommand = new HelpCommand();

@@ -23,7 +23,7 @@ public class Config {
     public String mainCommandPerm = "";
     public boolean createCooldown = true;
     public boolean doIslandBackup = true;
-    public boolean islandShop = false;
+    public boolean islandShop = true;
     public boolean automaticUpdate = true;
     public boolean defaultIslandPublic = true;
     public boolean netherIslands = true;
@@ -89,8 +89,18 @@ public class Config {
 
     public Map<XMaterial, Double> blockvalue = null;
     public Map<String, Double> spawnervalue = null;
-    public List<XBiome> biomes = Arrays.asList(XBiome.values());
-
+    public List<XBiome> biomes = null;
+    public Map<XBiome, BiomeConfig> islandBiomes = new HashMap<XBiome, BiomeConfig>() {{
+        for (XBiome biome : XBiome.values()) {
+            put(biome, new BiomeConfig());
+        }
+    }};
     public List<EntityType> blockedEntities = Arrays.asList(EntityType.PRIMED_TNT, EntityType.MINECART_TNT, EntityType.FIREBALL, EntityType.SMALL_FIREBALL, EntityType.ENDER_PEARL);
+
+    public static class BiomeConfig {
+        public double price = 5000.0;
+        public int crystals = 5;
+        public XMaterial icon = XMaterial.GRASS_BLOCK;
+    }
 
 }

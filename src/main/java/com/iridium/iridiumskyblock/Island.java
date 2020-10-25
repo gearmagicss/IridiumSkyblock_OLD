@@ -11,7 +11,6 @@ import com.iridium.iridiumskyblock.configs.Missions.Mission;
 import com.iridium.iridiumskyblock.configs.Missions.MissionData;
 import com.iridium.iridiumskyblock.gui.*;
 import com.iridium.iridiumskyblock.support.*;
-import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
 import lombok.Setter;
 import net.md_5.bungee.api.chat.*;
@@ -27,6 +26,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 public class Island {
@@ -619,7 +619,6 @@ public class Island {
             user.invites.clear();
             members.add(user.player);
             teleportHome(Bukkit.getPlayer(user.name));
-            user.invites.clear();
         } else {
             Player player = Bukkit.getPlayer(user.name);
             if (player != null) {
@@ -896,7 +895,6 @@ public class Island {
         Bukkit.getScheduler().cancelTask(getBankGUI().scheduler);
         if (generateID != -1) Bukkit.getScheduler().cancelTask(generateID);
         permissions.clear();
-        clearInventories();
         spawnPlayers();
         for (String player : members) {
             User.getUser(player).islandID = 0;
@@ -1093,6 +1091,7 @@ public class Island {
     }
 
     public void deleteBlocks() {
+        clearInventories();
         valuableBlocks.clear();
         calculateIslandValue();
         final World world = IridiumSkyblock.getIslandManager().getWorld();

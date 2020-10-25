@@ -44,10 +44,12 @@ public class Messages {
     public String playerInvited = "%prefix% &7You have invited a player to join your island.";
     public String invitedByPlayer = "%prefix% &7You have been invited to join %player%'s island.";
     public String leftIsland = "%prefix% &7You have left your island.";
+    public String biomeChanged = "%prefix% &7%player% changed your island's biome to %biome%";
+    public String biomePurchased = "%prefix% &7You purchased %biome% Biome for $%money%";
     public String regenIsland = "%prefix% &7Regenerating your island...";
     public String islandValue = "%prefix% &b&l * &7%rank%: &b%value%";
     public String playersIslandIsPrivate = "%prefix% &7That players island is private.";
-    public String islandNowPrivate = "%prefix% &7Your island is now private.";
+    public String islandNowPrivate = "%prefix% &7Your island is now private and %amount% players have been expelled from your island";
     public String islandNowPublic = "%prefix% &7Your island is now public.";
     public String cantLeaveIfOwner = "%prefix% &7You cannot leave your island whilst owner. do /is delete instead.";
     public String cantKickOwner = "%prefix% &7You cannot kick the island owner.";
@@ -67,6 +69,7 @@ public class Messages {
     public String playerBanned = "%prefix% &7You have banned %player% from vising your island.";
     public String playerUnBanned = "%prefix% &7You have un-banned %player% from vising your island.";
     public String playerJoinedYourIsland = "%prefix% &7%player% has joined your island.";
+    public String joinedIsland = "%prefix% &7You have joined %player%'s island";
     public String coopAdded = "%prefix% &7You have granted %player%'s Island member permissions.";
     public String coopGiven = "%prefix% &7You have been granted Member permissions to %player%'s Island.";
     public String coopTaken = "%prefix% &7Your Member permissions have been removed for %player%'s Island.";
@@ -81,8 +84,11 @@ public class Messages {
     public String missionComplete = "&b&lMission Complete: &7%mission% Level %level%";
     public String rewards = "&b&lReward: &7%crystalsReward% Crystals and $%vaultReward%";
     public String chatFormat = "&b&l%player% &7» %message%";
+    public String spyChatFormat = "[IsChatSpy] [ISLAND_NAME] &b&l%player% &7» %message%";
     public String chatDisabled = "%prefix% &7Your Island Chat has been disabled.";
     public String chatEnabled = "%prefix% &7Your Island Chat has been enabled.";
+    public String chatSpyDisabled = "%prefix% &7Island Chat Spy has been disabled.";
+    public String chatSpyEnabled = "%prefix% &7Island Chat Spy has been enabled.";
     public String transferAction = "Transfer ownership to %player%";
     public String resetAction = "Reset your Island";
     public String deleteAction = "Delete your Island";
@@ -90,6 +96,8 @@ public class Messages {
     public String visitedYourIsland = "%prefix% &7%player% is visiting your island.";
     public String cantBuy = "%prefix% &7You dont have enough money to buy this.";
     public String cantSell = "%prefix% &7You dont have this item to sell.";
+    public String shopBoughtMessage = "%prefix% &7You bought x%amount% %item% for %crystals% crystals and $%money%";
+    public String shopSoldMessage = "%prefix% &7You sold x%amount% %item% and got %crystals% crystals and $%money%";
     public String islandInterest = "%prefix% &7Your island interest has been applied giving you %crystals%Crystals $%money% and %exp%Experience.";
     public String helpfooter = "&b<< &7Page %page% of %maxpage% &b>>";
     public String previousPage = "<<";
@@ -114,6 +122,7 @@ public class Messages {
     public String inventoryFull = "%prefix% &7Your inventory is full";
     public String islandUpgraded = "%prefix% &7%player% upgraded your island's %upgradename% Upgrade from level %oldlvl% to level %newlvl%";
     public String activatedBooster = "%prefix% &7%player% activated your islands %boostername% Booster";
+    public String expelledIslandLocked = "%prefix% &7%player%'s island is now private";
     public String youHaveBeenExpelled = "%prefix% &7You were expelled from %kicker%'s island!";
     public String expelledVisitor = "%prefix% &7%player% has been expelled from your island.";
     public String cantExpelPlayer = "%prefix% &7%player% cannot be expelled!";

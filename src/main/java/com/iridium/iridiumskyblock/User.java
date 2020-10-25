@@ -17,6 +17,7 @@ public class User {
     public Island.Warp warp;
     public boolean bypassing;
     public boolean islandChat;
+    public boolean spyingIslandsChat;
     public boolean flying;
     public transient boolean teleportingHome;
     public Date lastCreate;
@@ -28,6 +29,7 @@ public class User {
         this.islandID = 0;
         bypassing = false;
         islandChat = false;
+        spyingIslandsChat = false;
         flying = false;
         IridiumSkyblock.getIslandManager().users.put(this.player, this);
     }

@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class PlayerJoinLeaveListener implements Listener {
 
@@ -25,7 +26,6 @@ public class PlayerJoinLeaveListener implements Listener {
                     player.sendMessage(Utils.color(prefix + " &7Newer version available: " + latest));
                 }
             }
-
             final Location location = player.getLocation();
             final IslandManager islandManager = IridiumSkyblock.getIslandManager();
             if (!islandManager.isIslandWorld(location)) return;
@@ -49,4 +49,5 @@ public class PlayerJoinLeaveListener implements Listener {
             IridiumSkyblock.getInstance().sendErrorMessage(e);
         }
     }
+
 }

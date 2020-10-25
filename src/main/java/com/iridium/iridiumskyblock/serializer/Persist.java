@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
+import java.util.Date;
 
 public class Persist {
 
@@ -44,6 +45,7 @@ public class Persist {
                 .registerTypeAdapter(Inventory.class, new InventoryTypeAdapter())
                 .registerTypeAdapterFactory(EnumTypeAdapter.ENUM_FACTORY)
                 .registerTypeAdapter(XMaterial.class, new XMaterialsTypeAdapter())
+                .registerTypeAdapter(Date.class, new DateTypeAdapter())
                 .registerTypeAdapter(XBiome.class, new XBiomeTypeAdapter());
     }
 

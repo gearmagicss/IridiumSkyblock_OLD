@@ -23,7 +23,18 @@ public class PrivateCommand extends Command {
         if (user.getIsland() != null) {
             if (user.bypassing || user.getIsland().getPermissions(user.role).islandprivate) {
                 user.getIsland().setVisit(false);
-                sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandNowPrivate.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
+                int visitorCount = 0;
+                for (Player visitor : user.getIsland().getPlayersOnIsland()) {
+                    if (User.getUser(visitor).getIsland().equals(user.getIsland())) continue;
+                    user.getIsland().spawnPlayer(visitor);
+                    visitor.sendMessage(Utils.color(IridiumSkyblock.getMessages().expelledIslandLocked
+                            .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                            .replace("%player%", p.getName())));
+                    visitorCount++;
+                }
+                p.sendMessage(Utils.color(IridiumSkyblock.getMessages().islandNowPrivate
+                        .replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)
+                        .replace("%amount%", visitorCount + "")));
             } else {
                 sender.sendMessage(Utils.color(IridiumSkyblock.getMessages().noPermission.replace("%prefix%", IridiumSkyblock.getConfiguration().prefix)));
             }

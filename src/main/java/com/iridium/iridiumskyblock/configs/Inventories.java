@@ -33,7 +33,7 @@ public class Inventories {
     public int coopGUISize = 27;
     public int islandMenuGUISize = 45;
     public int warpGUISize = 27;
-    public int topGUISize = 27;
+    public int topGUISize = 36;
     public int borderColorGUISize = 27;
     public int permissionsGUISize = 27;
     public int schematicselectGUISize = 27;
@@ -68,7 +68,7 @@ public class Inventories {
 
     public Item previousPage = new Item(XMaterial.RED_STAINED_GLASS_PANE, 1, "&c&lPrevious Page", new ArrayList<>());
 
-    public Item biome = new Item(XMaterial.GRASS_BLOCK, 1, "&b&l{biome} Biome", new ArrayList<>());
+    public Item biome = new Item(XMaterial.GRASS_BLOCK, 1, "&b&l{biome} Biome", Arrays.asList("", "&bPrice: ${price}", "&bCrystals: {crystals}","&b&l[!] &bRight Click to Purchase this Biome."));
 
     public Item back = new Item(XMaterial.NETHER_STAR, 1, "&c&lBack", new ArrayList<>());
 
@@ -78,7 +78,7 @@ public class Inventories {
     public Item islandPermissionAllow = new Item(XMaterial.LIME_STAINED_GLASS_PANE, 1, "&b&l{permission}", Collections.emptyList());
     public Item islandPermissionDeny = new Item(XMaterial.RED_STAINED_GLASS_PANE, 1, "&b&l{permission}", Collections.emptyList());
     public Item islandWarp = new Item(XMaterial.YELLOW_STAINED_GLASS_PANE, 1, "&b&l{warp}", Arrays.asList("", "&b&l[!] &bLeft Click to Teleport to this warp.", "&b&l[!] &bRight Click to Delete to warp."));
-    public Item topisland = new Item(XMaterial.PLAYER_HEAD, 1, "&b&lIsland Owner: &f{player} &7(#{rank})", "{player}", Arrays.asList("", "&b&l * &7Island Name: &b{name}", "&b&l * &7Island Rank: &b{rank}", "&b&l * &7Island Value: &b{value}", "","&b&l * &7Island Bank Value: &b{ISLANDBANK_value}", "&b&l * &7Emerald Blocks: &b{EMERALD_BLOCK_amount}", "&b&l * &7Diamond Blocks: &b{DIAMOND_BLOCK_amount}", "&b&l * &7Gold Blocks: &b{GOLD_BLOCK_amount}", "&b&l * &7Iron Blocks: &b{IRON_BLOCK_amount}", "&b&l * &7Hopper Blocks: &b{HOPPER_amount}", "&b&l * &7Beacon Blocks: &b{BEACON_amount}", "", "&b&l[!] &bLeft Click to Teleport to this island."));
+    public Item topisland = new Item(XMaterial.PLAYER_HEAD, 1, "&b&lIsland Owner: &f{player} &7(#{rank})", "{player}", Arrays.asList("", "&b&l * &7Island Name: &b{name}", "&b&l * &7Island Rank: &b{rank}", "&b&l * &7Island Value: &b{value}", "&b&l * &7Island votes: &b{votes}", "","&b&l * &7Island Bank Value: &b{ISLANDBANK_value}", "&b&l * &7Emerald Blocks: &b{EMERALD_BLOCK_amount}", "&b&l * &7Diamond Blocks: &b{DIAMOND_BLOCK_amount}", "&b&l * &7Gold Blocks: &b{GOLD_BLOCK_amount}", "&b&l * &7Iron Blocks: &b{IRON_BLOCK_amount}", "&b&l * &7Hopper Blocks: &b{HOPPER_amount}", "&b&l * &7Beacon Blocks: &b{BEACON_amount}", "", "&b&l[!] &bLeft Click to Teleport to this island."));
     public Item topfiller = new Item(XMaterial.BARRIER, 1, " ", Collections.emptyList());
     public Item visitisland = new Item(XMaterial.PLAYER_HEAD, 1, "&b&l{player}", "{player}", Arrays.asList("&b&l * &7Island: &b{name}", "&b&l * &7Rank: &b{rank}", "&b&l * &7Value: &b{value}", "&b&l * &7Votes: &b{votes}", "", "&b&l[!] &bLeft Click to Teleport to this island.", "&b&l[!] &bRight Click to (un)vote for this island."));
     public Item islandVisitors = new Item(XMaterial.PLAYER_HEAD,1,"&b&l{player}","{player}",Collections.singletonList("Click for expel visitor"));
